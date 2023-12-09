@@ -12,7 +12,7 @@ export const UsuariosTabla = () => {
     contrasenia: '',
     tipo_usuario: '',
   });
-  const [aviso, setAviso] = useState(null);
+  const [setAviso] = useState(null);
   const [alerta, setAlerta] = useState('');
 
   useEffect(() => {
@@ -83,27 +83,6 @@ export const UsuariosTabla = () => {
     setEditedUsuario({ ...editedUsuario, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch('http://localhost:3020/api/usuarios', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(editedUsuario),
-      });
-
-      if (response.status === 200) {
-        setAlerta('Usuario agregado correctamente');
-      } else {
-        setAlerta('Usuario agregado correctamente');
-      }
-    } catch (error) {
-      console.error(error);
-      setAlerta('Error al conectar con el servidor');
-    }
-  };
 
   return (
     <div className="">
