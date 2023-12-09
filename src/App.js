@@ -13,7 +13,15 @@ import './App.css';
 import { useStateContext } from './contexts/ContextProvider';
 
 const App = () => {
-  const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
+  const {
+    setCurrentColor,
+    setCurrentMode,
+    currentMode,
+    activeMenu,
+    currentColor,
+    themeSettings,
+    setThemeSettings,
+  } = useStateContext();
 
   useEffect(() => {
     const currentThemeColor = localStorage.getItem('colorMode');
@@ -22,17 +30,14 @@ const App = () => {
       setCurrentColor(currentThemeColor);
       setCurrentMode(currentThemeMode);
     }
-  }, []);
+  }, [setCurrentColor, setCurrentMode]);
 
   return (
     <div className={currentMode === 'Dark' ? 'dark' : ''}>
       <BrowserRouter>
         <div className="flex relative dark:bg-main-dark-bg">
           <div className="fixed right-4 bottom-4" style={{ zIndex: '1000' }}>
-            <TooltipComponent
-              content="Settings"
-              position="Top"
-            >
+            <TooltipComponent content="Settings" position="Top">
               <button
                 type="button"
                 onClick={() => setThemeSettings(true)}
@@ -41,7 +46,6 @@ const App = () => {
               >
                 <FiSettings />
               </button>
-
             </TooltipComponent>
           </div>
           {activeMenu ? (
@@ -64,18 +68,18 @@ const App = () => {
               <Navbar />
             </div>
             <div>
-              {themeSettings && (<ThemeSettings />)}
+              {themeSettings && <ThemeSettings />}
 
               <Routes>
-                <Route path="/" element={(<Dashboard />)} />
-                <Route path="/inicio" element={(<Dashboard />)} />
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/inicio" element={<Dashboard />} />
                 <Route path="/Tareas" element={<Kanban />} />
                 <Route path="/Recordatorios" element={<Calendar />} />
                 <Route path="/Agregar%20clientes" element={<ClienteFormulario />} />
                 <Route path="/Editar%20clientes" element={<ClientesTabla />} />
-                <Route path="/Crear%20usuarios" element={<UsuariosFormulario/>} />
-                <Route path="/Usuarios" element={<UsuariosTabla/>} />
-                <Route path="/Asignar%20Ticket" element={<AsignarTicket/>} />
+                <Route path="/Crear%20usuarios" element={<UsuariosFormulario />} />
+                <Route path="/Usuarios" element={<UsuariosTabla />} />
+                <Route path="/Asignar%20Ticket" element={<AsignarTicket />} />
               </Routes>
             </div>
             <Footer />
