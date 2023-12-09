@@ -2,23 +2,14 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
-
 import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
 import { Dashboard, Calendar, Kanban } from './pages';
-
-/*CLIENTES*/
 import { ClienteFormulario } from './pages/ClienteFormulario';
 import { ClientesTabla } from './pages/ClientesTabla';
-
-/* USUARIOS */
 import { UsuariosFormulario } from './pages/UsuariosFormulario';
 import { UsuariosTabla } from './pages/UsuariosTabla';
-
-/* TICKETS */
 import { AsignarTicket } from './pages/AsignarTicket';
-
 import './App.css';
-
 import { useStateContext } from './contexts/ContextProvider';
 
 const App = () => {
@@ -76,26 +67,15 @@ const App = () => {
               {themeSettings && (<ThemeSettings />)}
 
               <Routes>
-                {/* dashboard  */}
                 <Route path="/" element={(<Dashboard />)} />
                 <Route path="/inicio" element={(<Dashboard />)} />
-
-                {/* apps  */}
                 <Route path="/Tareas" element={<Kanban />} />
                 <Route path="/Recordatorios" element={<Calendar />} />
-    
-
-                {/* clientes */}
                 <Route path="/Agregar%20clientes" element={<ClienteFormulario />} />
                 <Route path="/Editar%20clientes" element={<ClientesTabla />} />
-
-                {/* usuarios */}
                 <Route path="/Crear%20usuarios" element={<UsuariosFormulario/>} />
                 <Route path="/Usuarios" element={<UsuariosTabla/>} />
-
-                {/* tickets */}
                 <Route path="/Asignar%20Ticket" element={<AsignarTicket/>} />
-
               </Routes>
             </div>
             <Footer />
